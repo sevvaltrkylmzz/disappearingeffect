@@ -1,0 +1,144 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+    background: #1b1a2e;
+    color: #fff;
+}
+
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #11101d;
+}
+
+#video-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+#webcam {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#bg-layer, #person-layer, #fx-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#bg-layer { z-index: 1; }
+#person-layer { z-index: 2; }
+#fx-layer { z-index: 3; pointer-events: none; }
+
+#bg-prompt {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#bg-prompt.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.prompt-inner {
+    text-align: center;
+}
+
+.prompt-inner p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+}
+
+.prompt-inner button {
+    padding: 12px 28px;
+    background: #5B5FC7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.prompt-inner button:hover {
+    background: #6b6fd7;
+    transform: translateY(-1px);
+}
+
+#toolbar {
+    height: 56px;
+    background: #201f3a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-center {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tb-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    color: #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.tb-btn:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+}
+
+.tb-btn.active {
+    background: #5B5FC7;
+    color: #fff;
+}
+
+.tb-btn.leave {
+    background: #e74c4c;
+    color: #fff;
+    margin-left: 12px;
+}
+
+.tb-btn.leave:hover {
+    background: #d43d3d;
+}
